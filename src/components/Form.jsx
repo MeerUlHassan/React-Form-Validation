@@ -1,23 +1,6 @@
 import React, { useState } from "react";
-import { useRef } from 'react';
 import Validation from "./Validation";
-import emailjs from '@emailjs/browser';
 import "./form.css";
-
-const Form = (props) => {
-  const form = useRef();
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs.sendForm('service_8ehmqfq', 'template_81ah7w3', form.current, 'a0mUGABVxc1FbCEaT')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
-      e.target.reset()
-  };
 
   const [inputValues, setInputValues] = useState({
     name: "",
@@ -39,7 +22,7 @@ const Form = (props) => {
   return (
     <>
       <p className="json-formet"> {JSON.stringify(inputValues, undefined, 3)}</p>
-      <form ref={form} className="container" onSubmit={sendEmail} onSubmit={handleSubmit}>
+      <form className="container" onSubmit={handleSubmit}>
         <label>Sign UP Form</label>
         <div className="form--content">
           <h4>Enter Full Name Here</h4>
